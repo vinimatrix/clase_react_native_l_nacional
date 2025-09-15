@@ -22,5 +22,34 @@ export default function ListaPostScreen({posts}){
     </NavigationContainer>
   );
 };
+//////////////////////////////////////////////////////////////////
 
+// Pantalla de origen - Enviando datos
+export default function ListaPostsScreen  ({ navigation })  {
+    
+     function NavegarADetalles  (post) {
+    navigation.navigate('Detalles', { 
+      postId: post.id,
+      titulo: post.title,
+      contenido: post.body
+    });
+  }
 
+  return (
+    <TouchableOpacity onPress={() => navegarADetalles(post)}>
+      <Text>{post.title}</Text>
+    </TouchableOpacity>
+  );
+};
+//////////////////////////////////////////////////////////////
+// Pantalla de destino - Recibiendo datos
+const DetallesPostScreen = ({ route }) => {
+  const { postId, titulo, contenido } = route.params;
+
+  return (
+    <View>
+      <Text style={styles.titulo}>{titulo}</Text>
+      <Text>{contenido}</Text>
+    </View>
+  );
+};
